@@ -1,0 +1,22 @@
+1.- Realizar un ABC en MVC4 .NET
+2.- Realizar en SQL Express Una Tabla en la cual se puedan dar de alta productos, con idProducto
+entero, NombreProducto VariableCaracter con una longitud 50, comentarios variable carácter
+200, Descripción variable carácter con una longitud de 100, categoría Entero, Estatus Entero.
+En donde IdProducto sea Identidad.
+Que el estatus este en una lista desplegable.
+Al hacer la baja no se eliminaran datos físicos, solo será un cambio de estatus.
+1.- Activo
+2.-Inactivo
+3.- Para ingresar un producto crear un botón que despliegue una ventana modal con JQUERY.
+Esta ventana modal contendrá el formulario y botones de ingresar o cancelar.
+Al ingresar los datos se guardan en BD y al cancelar la ventana modal se cerrara.
+4.-Para las validaciones de campos se usaran los DataAnotations.
+5.- Para la consulta de datos usar MVC GET y para la modificación POST.
+5.- Para la conexión a datos puedes usar cualquiera de las siguientes opciones:
+Usar Entity Framework.
+Usar ADO. Creando un Stored Procedure y consumirlo.
+6.- en la pantalla de ingreso de datos usar Razor Controls para mostrar la Fecha horas minutos y
+segundos.
+7.- Crear un servicio WCF que al enviarle tu Fecha de nacimiento te diga cuántos años tienes.
+10804
+

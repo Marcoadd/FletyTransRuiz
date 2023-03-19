@@ -1,0 +1,24 @@
+{
+  "name": "exam-fytruiz",
+  "version": "1.0.0",
+  "description": "1.- Realizar un ABC en MVC4 .NET\r 2.- Realizar en SQL Express Una Tabla en la cual se puedan dar de alta productos, con idProducto\r entero, NombreProducto VariableCaracter con una longitud 50, comentarios variable carácter\r 200, Descripción variable carácter con una longitud de 100, categoría Entero, Estatus Entero.\r En donde IdProducto sea Identidad.\r Que el estatus este en una lista desplegable.\r Al hacer la baja no se eliminaran datos físicos, solo será un cambio de estatus.\r 1.- Activo\r 2.-Inactivo\r 3.- Para ingresar un producto crear un botón que despliegue una ventana modal con JQUERY.\r Esta ventana modal contendrá el formulario y botones de ingresar o cancelar.\r Al ingresar los datos se guardan en BD y al cancelar la ventana modal se cerrara.\r 4.-Para las validaciones de campos se usaran los DataAnotations.\r 5.- Para la consulta de datos usar MVC GET y para la modificación POST.\r 5.- Para la conexión a datos puedes usar cualquiera de las siguientes opciones:\r Usar Entity Framework.\r Usar ADO. Creando un Stored Procedure y consumirlo.\r 6.- en la pantalla de ingreso de datos usar Razor Controls para mostrar la Fecha horas minutos y\r segundos.\r 7.- Crear un servicio WCF que al enviarle tu Fecha de nacimiento te diga cuántos años tienes.\r 10804",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.29.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
