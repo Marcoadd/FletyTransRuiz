@@ -1,16 +1,17 @@
-const productsServices = require('./product.services')
+const productServices = require('./product.services')
 
 const router = require('express').Router()
 
-router.get('/products', productsServices.getAllProducts)
+router.get('/products', productServices.getAllProducts)
 
-router.post('/products', productsServices.postNewProduct)
+router.post('/products', productServices.postNewProduct)
 
-router.get('/products/:id', productsServices.getProductById)
+router.get('/products/:id', productServices.getProductById)
 
-router.patch('/products/:id', productsServices.patchProduct)
+router.patch('/products/:id', productServices.patchProduct)
 
-router.delete('/products/:id', productsServices.deleteProduct)
+router.put('/products/:id', productServices.putProduct)
 
+router.delete('/products/:id', productServices.deleteProduct)
 
 module.exports = router

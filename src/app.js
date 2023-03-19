@@ -5,10 +5,8 @@ const responseHandlers = require('./utils/handleRespon')
 const initModels = require("./models/init.models")
 
 const productRouter = require("./products/product.router")
-const categoryRouter = require("./categories/category.router")
-const statusRouter = require("./status/ststus.router")
 
-// initial config
+
 const app = express()
 app.use(express.json())
 
@@ -24,9 +22,6 @@ initModels()
 
 // ruta para el crud de productos 
 app.use('/api/v1', productRouter)
-app.use('/api/v1', categoryRouter)
-app.use('/api/v1', statusRouter)
-
 
 app.get('/', (req, res) => {
   responseHandlers.success({

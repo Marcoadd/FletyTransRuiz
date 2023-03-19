@@ -1,150 +1,100 @@
-const productsControllers = require('./product.controller')
-const responses = require('../utils/handleRespon')
+const productControllers = require('./product.controller')
 
 const getAllProducts = (req, res) => {
-  productsControllers.findAllProducts()
+    productControllers.findAllProducts()
         .then(data => {
-            responses.success({
-                    status: 200,
-                    data: data,
-                    message: 'Getting all products',
-                    res
-                })
+            res.status(200).json(data)
         })
         .catch(err => {
-            responses.error({
-                    status: 400,
-                    data: err,
-                    message: 'Something bad getting all products',
-                    res
-                })
+            res.status(400).json(err)
         })
 }
 
-const getProductById = (req ,res) => {
-    const id = req.params.id 
-    productsControllers.findProductById(id)
+const getProductById = (req, res) => {
+
+    const id = Number(req.params.id)
+
+    productControllers.findProductById(id)
         .then(data => {
             if(data){
-                responses.success({
-                    status: 200,
-                    data,
-                    message: `Getting Product with id: ${id}`,
-                    res
-                })
+                res.status(200).json(data)
             } else {
-                responses.error({
-                    status: 404,
-                    message: `Product with ID: ${id}, not found`,
-                    res
-                })
+                res.status(404).json({message: 'Product not found'})
             }
         })
         .catch(err => {
-            responses.error({
-                status: 400,
-                data: err,
-                message: 'Something bad getting the Product',
-                res
-            })
+            res.status(400).json(err)
         })
 }
 
 const postNewProduct = (req, res) => {
-    const productObj = req.body
-    productsControllers.createNewProduct(productObj)
-        .then(data => {
-            responses.success({
-                status: 201,
-                data,
-                message: `Product created succesfully with id: ${data.id}`,
-                res
-            })
-        })
-        .catch(err => {
-            responses.error({
-                status: 400,
-                data: err,
-                message: 'Error ocurred trying to create a new product',
-                res,
-                fields: {
-                    productName : 'String',
-                    comments : 'String',
-                    description: 'String'
-                }
-            })
-        })
-}
-
-const patchProduct = (req, res) => {
-    const id = req.params.id 
     const productObj = req.body 
-
-    productsControllers.updateProduct(id, productObj)
+    productControllers.createNewProduct(productObj)
         .then(data => {
-            if(data){
-                responses.success({
-                    status: 200,
-                    data, 
-                    message: `product with id: ${id} modified successfully`,
-                    res
-                })
-            } else {
-                responses.error({
-                    status: 404,
-                    message: `The user with ID ${id} not found`,
-                    res,
-                    fields: {
-                      productName : 'String',
-                      comments : 'String',
-                      description: 'String'
-                  }
-                })
-            }
+            res.status(201).json(data)
         })
         .catch(err => {
-            responses.error({
-                status: 400,
-                data: err,
-                message: `Error ocurred trying to update product with id ${id}`,
-                res,
-                fields: {
-                  productName : 'String',
-                  comments : 'String',
-                  description: 'String'
-              }
-            })
+            res.status(400).json(err)
         })
 }
 
 const deleteProduct = (req, res) => {
     const id = req.params.id 
 
-    productsControllers.deleteProduct(id)
+    productControllers.deleteProduct(id)
         .then(data => {
             if(data){
-                responses.success({
-                    status: 200,
-                    data, 
-                    message: `product with id: ${id} deleted successfully`,
-                    res
-                })
+                res.status(204).json()
             } else {
-                responses.error({
-                    status: 404,
-                    data: err,
-                    message: `The product with ID ${id} not found`,
-                    res
-                })
+                res.status(404).json({message: 'Product not found'})
             }
         })
         .catch(err => {
-            responses.error({
-                status: 400,
-                data: err,
-                message: `Error ocurred trying to delete product with id ${id}`,
-                res
-            })
+            res.status(400).json(err)
+        })
+}
+
+const patchProduct = (req, res) => {
+    const id = req.params.id 
+    const productObj = req.body 
+    productControllers.updateProduct(id, productObj)
+        .then(data => {
+            if(data){
+                res.status(200).json({message: `Product with id: ${id} updated succesfully`})
+            } else {
+                res.status(404).json({message: 'Product not found'})
+            }
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+}
+
+const putProduct = (req, res) => {
+    const id = req.params.id 
+    const productObj = req.body 
+
+    if(!productObj.name || !productObj.comment || !productObj.description || !productObj.status){
+        return res.status(400).json({
+            message: 'Missing Data',
+            example_fields: {
+                title: 'String',
+                price: 10.99,
+                imageUrl: 'https:/google.com/image.png'
+            }
+        })
+    }
+
+    productControllers.updateProduct(id, productObj)
+        .then(data => {
+            if(data){
+                res.status(200).json({message: `Product with id: ${id} updated succesfully`})
+            } else {
+                res.status(404).json({message: 'Product not found'})
+            }
+        })
+        .catch(err => {
+            res.status(400).json(err)
         })
 }
 
@@ -152,6 +102,7 @@ module.exports = {
     getAllProducts,
     getProductById,
     postNewProduct,
+    deleteProduct,
     patchProduct,
-    deleteProduct
+    putProduct
 }

@@ -1,15 +1,11 @@
-const Products = require("./product.models")
-const Category = require("./category.models")
-const Status = require("./status.models")
+const Categories = require('./category.models')
+const Products = require('./product.models')
 
 const initModels = () => {
-  // Productos <=> Categorias
-    Category.hasMany(Products)
-    Products.belongsTo(Category)
 
-    //Productos <=> Status
-    Status.hasMany(Products)
-    Products.belongsTo(Status)
+    Products.belongsTo(Categories)
+    Categories.hasMany(Products)
+
 }
 
 module.exports = initModels
