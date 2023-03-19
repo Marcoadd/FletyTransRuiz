@@ -7,7 +7,7 @@ const getAllProducts = (req, res) => {
             responses.success({
                     status: 200,
                     data: data,
-                    message: 'Getting all Users',
+                    message: 'Getting all products',
                     res
                 })
         })
@@ -15,7 +15,7 @@ const getAllProducts = (req, res) => {
             responses.error({
                     status: 400,
                     data: err,
-                    message: 'Something bad getting all users',
+                    message: 'Something bad getting all products',
                     res
                 })
         })

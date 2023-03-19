@@ -14,8 +14,9 @@ const findCategoryById = async (id) => {
   return data
 }
 
+const idBase = 1
 const createNewCategory = async (categoryObj) => {
-  const idBase = 1
+  
   const newCategory = {
       id: idBase++,
       name: categoryObj.name

@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
       res,
       status: 200,
       message: 'Servidor inicializado correctamente',
-      data
+     // data: data
   })
 })
 
