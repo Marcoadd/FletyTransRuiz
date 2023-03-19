@@ -8,7 +8,7 @@ const Categories = db.define('categories', {
         autoIncrement: true
     },
     name: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
         unique: true
     }

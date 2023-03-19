@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node ./src/app.js",
     "dev": "nodemon ./src/app.js",
+    "seeder:category":"node ./src/seeders/categories.seeders.js",
+    "seeder:product":"node ./src/seeders/products.seeder.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

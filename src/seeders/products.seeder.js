@@ -6,7 +6,7 @@ try{
       name: 'Refrigeraador',
       comment: 'bonito',
       description: 'blaco',
-      categoryId: 1,
+      categoryId: 5,
       status: true
     },
     {

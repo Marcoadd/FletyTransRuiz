@@ -3,17 +3,17 @@ const Categories = require('../models/category.models')
 try{
   Categories.bulkCreate([
     {
-      title: 'Electrodomesticos'
+      name: 'Electrodomesticos'
     },
     {
-      title: 'Videojuegos'
+      name: 'Videojuegos'
     },
     {
-      title: 'Ropa'
+      name: 'Ropa'
     },
     {
-      title: 'Herramientas'
-    }
+      name: 'Herramientas'
+    },
   ])
   console.log('categorias creadas exitosamente')
 } catch(err) {
