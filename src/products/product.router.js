@@ -10,8 +10,10 @@ router.get('/products/:id', productServices.getProductById)
 
 router.patch('/products/:id', productServices.patchProduct)
 
+router.delete('/products/:id', productServices.StatusProduct)
+
 router.put('/products/:id', productServices.putProduct)
 
-router.delete('/products/:id', productServices.deleteProduct)
+// router.delete('/products/:id', productServices.deleteProduct)
 
 module.exports = router

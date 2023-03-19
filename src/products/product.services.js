@@ -12,7 +12,7 @@ const getAllProducts = (req, res) => {
 
 const getProductById = (req, res) => {
 
-    const id = Number(req.params.id)
+    const id = Number(req.body.id)
 
     productControllers.findProductById(id)
         .then(data => {
@@ -39,12 +39,12 @@ const postNewProduct = (req, res) => {
 }
 
 const deleteProduct = (req, res) => {
-    const id = req.params.id 
+    const id = req.body.id 
 
     productControllers.deleteProduct(id)
         .then(data => {
             if(data){
-                res.status(204).json()
+                res.status(204).json({message: 'Product Delete Correctly'})
             } else {
                 res.status(404).json({message: 'Product not found'})
             }
@@ -55,7 +55,7 @@ const deleteProduct = (req, res) => {
 }
 
 const patchProduct = (req, res) => {
-    const id = req.params.id 
+    const id = req.body.id 
     const productObj = req.body 
     productControllers.updateProduct(id, productObj)
         .then(data => {
@@ -70,17 +70,34 @@ const patchProduct = (req, res) => {
         })
 }
 
+const StatusProduct = (req, res) => {
+    const id = req.body.id 
+    const productObj = req.body 
+    productControllers.ChangeStatusProduct(id, productObj)
+        .then(data => {
+            if(data){
+                res.status(200).json({message: `Product status with id: ${id} change succesfully`})
+            } else {
+                res.status(404).json({message: 'Product not found'})
+            }
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+}
+
 const putProduct = (req, res) => {
-    const id = req.params.id 
+    const id = req.body.id 
     const productObj = req.body 
 
     if(!productObj.name || !productObj.comment || !productObj.description || !productObj.status){
         return res.status(400).json({
             message: 'Missing Data',
             example_fields: {
-                title: 'String',
-                price: 10.99,
-                imageUrl: 'https:/google.com/image.png'
+                name: 'String',
+                comment: 'string',
+                description: 'https:/google.com/image.png',
+                status: true
             }
         })
     }
@@ -104,5 +121,6 @@ module.exports = {
     postNewProduct,
     deleteProduct,
     patchProduct,
+    StatusProduct,
     putProduct
 }

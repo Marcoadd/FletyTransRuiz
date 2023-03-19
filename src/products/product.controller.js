@@ -4,7 +4,7 @@ const Categories = require('../models/category.models')
 const findAllProducts = async () => {
 
     const data = await Products.findAll({
-        attributes: ['id', 'name', 'comment', 'description'], 
+        attributes: ['id', 'name', 'comment', 'description', 'status'], 
         
         include: {
             model: Categories,
@@ -31,6 +31,7 @@ const createNewProduct = async (prodObj) => {
         name: prodObj.name,
         description: prodObj.description,
         comment : prodObj.comment,
+        categoryId: prodObj.categoryId,
         status: prodObj.status
     }
 
@@ -39,6 +40,15 @@ const createNewProduct = async (prodObj) => {
 }
 
 const updateProduct = async (id, productObj) => {
+    const data = await Products.update(productObj, {
+        where: {
+            id : id
+        }
+    })
+    return data[0] 
+}
+
+const ChangeStatusProduct = async (id, productObj) => {
     const data = await Products.update(productObj, {
         where: {
             id : id
@@ -62,5 +72,6 @@ module.exports = {
     findProductById,
     createNewProduct,
     updateProduct,
+    ChangeStatusProduct,
     deleteProduct
 }
